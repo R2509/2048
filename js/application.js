@@ -1,4 +1,17 @@
-// Wait till the browser is ready to render the game (avoids glitches)
-window.requestAnimationFrame(function () {
-  new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager);
-});
+// Load grid size from global JSON file...
+fetch('../info.json')
+  .then(response => response.json())
+  .then(
+    function (data) {
+      let jsonData = new JSONDataManager(data).json()
+
+      // Inject dynamically generated HTML background grid
+      let injector = new HTMLInjector(jsonData.size, '.grid-container')
+      injector.injectGrid();
+
+      // Wait till the browser is ready to render the game (avoids glitches)
+      window.requestAnimationFrame(function () {
+        new GameManager(jsonData.size, KeyboardInputManager, HTMLActuator, LocalStorageManager);
+    });
+  })
+//  .catch(err => console.log(`An error occurred: ${err}`));
