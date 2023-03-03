@@ -11,7 +11,7 @@ fetch('../info.json')
 
       // Wait till the browser is ready to render the game (avoids glitches)
       window.requestAnimationFrame(function () {
-        new GameManager(jsonData.size, KeyboardInputManager, HTMLActuator, LocalStorageManager);
+        new GameManager(jsonData, KeyboardInputManager, HTMLActuator, LocalStorageManager);
     });
   })
 //  .catch(err => console.log(`An error occurred: ${err}`));

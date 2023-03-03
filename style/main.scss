@@ -337,7 +337,7 @@ hr {
   -moz-transition-property: -moz-transform;
   transition-property: transform;
 
-  $base: 2;
+  $base: map-get($info, $key: base);
   $exponent: 1;
   $limit: 11;
 
