@@ -6,6 +6,9 @@ function JSONDataManager (jsonData) {
 }
 
 JSONDataManager.prototype.json = function () {
+    if (this.jsonData[0] == '<') { // If it is really HTML...
+        this.jsonData = new DOMParser().parseFromString(this.jsonData, 'text/html').firstChild.firstChild.innerHTML;
+    }
     // SETUP
     // >> 1: Replace original params with URL params.
     let urlParams = new URL(window.location.href).searchParams;
