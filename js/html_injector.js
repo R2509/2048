@@ -20,9 +20,24 @@ HTMLInjector.prototype.injectGrid = function () {
         this.grid.push(gridRow);
     }
 
+    console.log('we got this far...', this.grid)
     for (const row of this.grid) {
         this.gridContainer.appendChild(row);
     }
+}
+
+HTMLInjector.prototype.injectCSS = function (gridSize) {
+    var elements = document.getElementsByClassName('css-item');
+    while(elements[0]) {
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+
+    let css = document.createElement('link');
+    css.href = `style/out/main-${gridSize}.css`;
+    css.rel = "stylesheet";
+    css.type = "text/css";
+    css.classList.add('css-item');
+    document.head.appendChild(css);
 }
 
 // Can't use this yet cause it's called in application.js and... well... just look at index.html's script list...
